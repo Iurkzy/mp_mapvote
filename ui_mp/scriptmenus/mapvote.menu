@@ -1,0 +1,523 @@
+#include "ui/menudef.h"
+#include "ui/framestyle.inc"
+#include "ui_mp/newframe.inc"
+#include "ui_mp/common_macro.inc"
+
+#include "ui_mp/menustyle.inc"
+#include "ui_mp/choices_setup_teams.menu"
+
+{
+	menuDef
+	{
+		name			"mapvote"
+		rect			0 0 640 480 HORIZONTAL_ALIGN_FULLSCREEN VERTICAL_ALIGN_FULLSCREEN
+		focusColor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		
+		onOpen
+		{ 
+			if (IsInGame())
+			{
+				showMenu "pausedbkgnd_eog";
+			}
+		}
+
+
+
+		// -------======= MAP BUTTONS =======------- //
+
+
+		// Vote Button 1 ( Top Far Left )
+		itemDef	
+		{																												
+			type			ITEM_TYPE_BUTTON
+			rect			-253 46 152 26 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			style			WINDOW_STYLE_FILLED
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0.5
+			visible			when( dvarBool("vote_in_process") )
+			border				1
+			bordersize			1
+			bordercolor			0.455 0.486 0.549 1
+			mouseEnter		{ setcolor bordercolor 1 0.412 0.702 1; setDvar ui_mapFocus dvarString("ui_vote_1"); }
+			mouseexit		{ setcolor bordercolor 0.455 0.486 0.549 1; }
+			action			{ scriptMenuResponse	"vote_1" }
+		}
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			-246 50 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( ui_vote_1 ), 3 );
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}	
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			-114 50 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		dvarString("ui_vote_1_count")
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}	
+
+
+
+		// Vote Button 2 ( Top Middle )
+		itemDef	
+		{																												
+			type			ITEM_TYPE_BUTTON
+			rect			-77 46 152 26 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			style			WINDOW_STYLE_FILLED
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0.5
+			visible			when( dvarBool("vote_in_process") )
+			border				1
+			bordersize			1
+			bordercolor			0.455 0.486 0.549 1
+			mouseEnter		{ setcolor bordercolor 1 0.412 0.702 1; setDvar ui_mapFocus dvarString("ui_vote_2"); }
+			mouseexit		{ setcolor bordercolor 0.455 0.486 0.549 1; }
+			action			{ scriptMenuResponse	"vote_2" }
+		}
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			-70 50 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( ui_vote_2 ), 3 );
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			62 50 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		dvarString("ui_vote_2_count")
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}
+
+
+
+		// Vote Button 3 ( Top Far Right )
+		itemDef	
+		{																												
+			type			ITEM_TYPE_BUTTON
+			rect			100 46 152 26 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			style			WINDOW_STYLE_FILLED
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0.5
+			visible			when( dvarBool("vote_in_process") )
+			border				1
+			bordersize			1
+			bordercolor			0.455 0.486 0.549 1
+			mouseEnter		{ setcolor bordercolor 1 0.412 0.702 1; setDvar ui_mapFocus dvarString("ui_vote_3"); }
+			mouseexit		{ setcolor bordercolor 0.455 0.486 0.549 1; }
+			action			{ scriptMenuResponse	"vote_3" }
+		}
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			107 50 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( ui_vote_3 ), 3 );
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}	
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			239 50 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		dvarString("ui_vote_3_count")
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}	
+
+
+
+		// Vote Button 4 ( Bottom Middle )
+		itemDef	
+		{																												
+			type			ITEM_TYPE_BUTTON
+			rect			-77 96 152 26 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			style			WINDOW_STYLE_FILLED
+			forecolor		1 1 1 1
+			backcolor		0 0 0 0.5
+			visible			when( dvarBool("vote_in_process") )
+			border				1
+			bordersize			1
+			bordercolor			0.455 0.486 0.549 1
+			mouseEnter		{ setcolor bordercolor 1 0.412 0.702 1; setDvar ui_mapFocus dvarString("ui_mapname"); }
+			mouseexit		{ setcolor bordercolor 0.455 0.486 0.549 1; }
+			action			
+			{ 
+				scriptMenuResponse	"vote_4" 
+			}
+		}
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			-70 100 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			text			"Map Restart"
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}	
+		itemDef
+		{
+			type			ITEM_TYPE_TEXT
+			rect			62 100 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_MIDDLE_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		dvarString("ui_vote_4_count")
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}	
+
+
+
+		// -------======= CHOOSE NEXT MAP BUTTON =======------- //
+
+		itemDef																											
+		{																												
+			type			ITEM_TYPE_BUTTON
+			rect			30 198 50 20 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_CENTER
+			exp				rect W( getTextWidth("CHOOSE NEXT MAP", CHOICE_TEXTFONT, TEXTSIZE_DEFAULT) + 10 )
+			text			"CHOOSE NEXT MAP"
+			textfont		CHOICE_TEXTFONT
+			textscale		TEXTSIZE_DEFAULT
+			textalign		ITEM_ALIGN_MIDDLE_CENTER
+			style			WINDOW_STYLE_FILLED
+			forecolor		0.455 0.486 0.549 0.4
+			backcolor		0 0 0 0.4
+			visible			when( dvarBool("vote_in_process") )
+			border				1
+			bordersize			1
+			bordercolor			0.455 0.486 0.549 0.4
+		}
+
+
+
+		// -------======= TIMER AND TITLE =======------- //
+		
+
+		itemDef
+		{
+			name			map_vote_next
+			type			ITEM_TYPE_TEXT
+			rect			29 55 10 10 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			origin			0 0
+		    text			"VOTE FOR NEXT MAP"
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}
+
+		itemDef
+		{
+			name			map_vote_ends
+			type			ITEM_TYPE_TEXT
+			rect			30 65 10 10 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			origin			0 0
+		    text			"TIME UNTIL MAP VOTE ENDS:"
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.2
+			forecolor		1 1 1 1
+			visible			when( dvarBool("vote_in_process") )
+			decoration
+		}
+
+		itemDef
+		{
+			name			map_vote_timer
+			type			ITEM_TYPE_TEXT
+			rect			127 65 10 10 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			origin			0 0
+			exp text		( dvarInt( voting_time ) )
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.2
+			forecolor		1 1 1 1
+			visible			when( dvarBool("vote_in_process") && dvarInt( voting_time ) >= 6 )
+			decoration
+		}
+
+		itemDef
+		{
+			name			map_vote_timer2
+			type			ITEM_TYPE_TEXT
+			rect			127 65 10 10 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			origin			0 0
+			exp text		( dvarInt( voting_time ) )
+			textstyle		ITEM_TEXTSTYLE_NORMAL
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.2
+			forecolor		0.863 0.361 0.11 1
+			visible			when( dvarBool("vote_in_process") && dvarInt( voting_time ) <= 5 )
+			decoration
+		}
+
+
+
+		// -------======= VOTE FOR MAP PREVIEW =======------- //
+
+
+		itemDef 
+		{
+			name			mappreview
+			style			WINDOW_STYLE_SHADER
+			type			ITEM_TYPE_IMAGE			
+			rect			-106 -204 210 175 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			border			0
+			bordercolor		.5 .5 .5 .5
+			origin			0 0
+			exp				material( tablelookup( "mp/mapsTable.csv",		0, dvarString( ui_mapFocus ), 4 ) );
+			visible			when( dvarString( ui_mapFocus ) != "" && dvarBool("vote_in_process") )
+			decoration
+		}
+
+		itemDef
+		{
+			name			map_desc
+			type			ITEM_TYPE_TEXT
+			rect			-96 -14 200 35 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_SMALL
+			textscale		0.3
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( ui_mapFocus ), 6 );
+			visible			when( dvarString( ui_mapFocus ) != "" && dvarBool("vote_in_process") )
+			autowrapped
+			decoration
+		}
+
+		itemDef
+		{
+			name			map_name
+			type			ITEM_TYPE_TEXT
+			rect			-96 -34 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( ui_mapFocus ), 3 );
+			visible			when( dvarString( ui_mapFocus ) != "" && dvarBool("vote_in_process") )
+			decoration
+		}		
+
+		
+		// default map information to current map
+		itemDef 
+		{
+			name			mappreview
+			style			WINDOW_STYLE_SHADER
+			type			ITEM_TYPE_IMAGE			
+			rect			-106 -204 210 175 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			border			0
+			bordercolor		.5 .5 .5 .5
+			origin			0 0
+			exp				material( tablelookup( "mp/mapsTable.csv",		0, dvarString( ui_mapname ), 4 ) );
+			visible			when( dvarString( ui_mapFocus ) == "" && dvarBool("vote_in_process") )
+			decoration
+		}
+		
+		itemDef
+		{
+			name			map_desc
+			type			ITEM_TYPE_TEXT
+			rect			-96 -14 200 35 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_SMALL
+			textscale		0.3
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( ui_mapname ), 6 );
+			visible			when( dvarString( ui_mapFocus ) == "" && dvarBool("vote_in_process") )
+			autowrapped
+			decoration
+		}
+		
+		itemDef
+		{
+			name			map_name
+			type			ITEM_TYPE_TEXT
+			rect			-96 -34 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.4
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( ui_mapname ), 3 );
+			visible			when( dvarString( ui_mapFocus ) == "" && dvarBool("vote_in_process") )
+			decoration
+		}
+
+
+
+		// -------======= WINNING MAP =======------- //
+
+
+		itemDef 
+		{
+			name			mappreview2
+			style			WINDOW_STYLE_SHADER
+			type			ITEM_TYPE_IMAGE			
+			rect			-129 -170 260 225 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			border			0
+			bordercolor		.5 .5 .5 .5
+			origin			0 0
+			exp				material( tablelookup( "mp/mapsTable.csv",		0, dvarString( vote_winner ), 4 ) );
+			visible			when( dvarBool( vote_in_process ) == false )
+			decoration
+		}
+		
+		itemDef
+		{
+			name			map_winner
+			type			ITEM_TYPE_TEXT
+			rect			-119 25 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.2
+			forecolor		1 1 1 1
+			text			"Winning Map: "
+			visible			when( dvarBool( vote_in_process ) == false )
+			decoration
+		}
+		
+		itemDef
+		{
+			name			map_name2
+			type			ITEM_TYPE_TEXT
+			rect			-119 50 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.5
+			forecolor		1 1 1 1
+			exp text		"@" + tableLookup( "mp/mapsTable.csv",		0, dvarString( vote_winner ), 3 );
+			visible			when( dvarBool( vote_in_process ) == false )
+			decoration
+		}
+
+		itemDef
+		{
+			name			next_map
+			type			ITEM_TYPE_TEXT
+			rect			-119 75 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			text			"TIME UNTIL NEXT MAP: "
+			visible			when( dvarBool( vote_in_process ) == false )
+			decoration
+		}
+
+		itemDef
+		{
+			name			next_map_timer
+			type			ITEM_TYPE_TEXT
+			rect			0 75 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		1 1 1 1
+			exp text		( dvarInt( voting_time ) )
+			visible			when( dvarBool( vote_in_process ) == false && dvarInt( voting_time ) >= 6 )
+			decoration
+		}
+
+		itemDef
+		{
+			name			next_map_timer2
+			type			ITEM_TYPE_TEXT
+			rect			0 75 200 20 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_LEFT
+			textfont		UI_FONT_NORMAL
+			textscale		0.3
+			forecolor		0.863 0.361 0.11 1
+			exp text		( dvarInt( voting_time ) )
+			visible			when( dvarBool( vote_in_process ) == false && dvarInt( voting_time ) <= 5 )
+			decoration
+		}
+
+
+
+		// -------======= BACKGROUND GLOW =======------- //
+
+		
+		itemDef
+		{
+			style			WINDOW_STYLE_SHADER
+			rect			-100 -120 1708 480 HORIZONTAL_ALIGN_CENTER_SAFEAREA VERTICAL_ALIGN_CENTER_SAFEAREA
+			forecolor		1 0.412 0.702 1
+			exp forecolor 	a ( ((sin(milliseconds()/1500) + 1) * 0.25) + 0.25 )
+			background		"menu_mp_lobby_frame_fade"
+			visible			1
+			decoration
+		}	
+    }
+}
+
