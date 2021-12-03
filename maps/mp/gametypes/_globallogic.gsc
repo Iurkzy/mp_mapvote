@@ -1006,7 +1006,7 @@ endGame( winner, endReasonText )
 		player setClientUIVisibilityFlag( "hud_visible", 0 );
 		player thread maps\mp\gametypes\_clientids::initiate_mapvote();
 		
-		wait 30;
+		wait 50;
 	}
 
 	level.intermission = true;

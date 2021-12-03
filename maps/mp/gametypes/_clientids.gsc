@@ -10,6 +10,8 @@ init()
     precacheMenu(game["menu_mapvote"]);
 
     setDvar("voting_time", 30);
+    setDvar("scr_intermission_time", 0);
+
     level.t5maps = "mp_array,mp_cracked,mp_crisis,mp_firingrange,mp_duga,mp_hanoi,mp_cairo,mp_havoc,mp_cosmodrome,mp_nuked,mp_radiation,mp_mountain,mp_villa,mp_russianbase,mp_berlinwall2,mp_discovery,mp_kowloon,mp_stadium,mp_gridlock,mp_hotel,mp_outskirts,mp_zoo,mp_drivein,mp_area51,mp_golfcourse,mp_silo";
     
     setDvar("ui_vote_1_count", 0);
